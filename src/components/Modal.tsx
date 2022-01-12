@@ -291,7 +291,7 @@ export class Modal extends React.Component<ModalProps, State> {
         key='tooltip'
         style={[
           styles.tooltip,
-          this.props.tooltipStyle,
+          //this.props.tooltipStyle,
           {
             zIndex: 99,
             opacity,
