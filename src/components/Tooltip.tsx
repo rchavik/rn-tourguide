@@ -32,7 +32,7 @@ export const Tooltip = ({
       justifyContent: 'center',
       paddingBottom: 16,
       width: '80%',
-      backgroundColor: '#ffffffef',
+      // backgroundColor: '#ffffffef',
     }}
   >
     <View style={styles.tooltipContainer}>
