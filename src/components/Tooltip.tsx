@@ -36,9 +36,11 @@ export const Tooltip = ({
     }}
   >
     <View style={styles.tooltipContainer}>
+      { currentStep && typeof currentStep.text == 'string' ?
       <Text testID='stepDescription' style={styles.tooltipText}>
         {currentStep && currentStep.text}
       </Text>
+      : currentStep && currentStep.text }
     </View>
     <View style={[styles.bottomBar]}>
       {!isLastStep ? (
