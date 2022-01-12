@@ -61,7 +61,7 @@ export const useTourGuideController = (tourKey?: string) => {
     stop: _stop,
     eventEmitter: _eventEmitter,
     getCurrentStep: _getCurrentStep,
-    canStart: _canStart,
+    canStart: _canStart || true,
     tourKey: key,
     TourGuideZone: KeyedTourGuideZone,
     TourGuideZoneByPosition: KeyedTourGuideZoneByPosition,
