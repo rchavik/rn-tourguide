@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, LayoutChangeEvent, StyleProp, ViewStyle, ScaledSize } from 'react-native';
+import { Animated, LayoutChangeEvent, ScaledSize, StyleProp, ViewStyle } from 'react-native';
 import { PathProps } from 'react-native-svg';
 import { IStep, ValueXY } from '../types';
 interface Props {
@@ -22,6 +22,7 @@ interface State {
     animation: Animated.Value;
     canvasSize: ValueXY;
     previousPath: string;
+    d: string;
 }
 export declare class SvgMask extends Component<Props, State> {
     static defaultProps: {
