@@ -5,11 +5,11 @@ import {
   Easing,
   LayoutChangeEvent,
   Platform,
+  ScaledSize,
   StyleProp,
+  TouchableWithoutFeedback,
   View,
   ViewStyle,
-  TouchableWithoutFeedback,
-  ScaledSize,
 } from 'react-native'
 import Svg, { PathProps } from 'react-native-svg'
 import { IStep, ValueXY } from '../types'
@@ -37,9 +37,8 @@ interface State {
   animation: Animated.Value
   canvasSize: ValueXY
   previousPath: string
+  d: string
 }
-
-const IS_WEB = Platform.OS !== 'web'
 
 export class SvgMask extends Component<Props, State> {
   static defaultProps = {
@@ -80,6 +79,7 @@ export class SvgMask extends Component<Props, State> {
       opacity: new Animated.Value(0),
       animation: new Animated.Value(0),
       previousPath: this.firstPath,
+      d: this.firstPath,
     }
 
     this.listenerID = this.state.animation.addListener(this.animationListener)
@@ -125,13 +125,9 @@ export class SvgMask extends Component<Props, State> {
     const d = this.getPath()
     this.rafID = requestAnimationFrame(() => {
       if (this.mask && this.mask.current) {
-        if (IS_WEB) {
-          // @ts-ignore
-          this.mask.current.setNativeProps({ d })
-        } else {
-          // @ts-ignore
-          this.mask.current._touchableNode.setAttribute('d', d)
-        }
+        this.setState({
+          d,
+        })
       }
     })
   }
@@ -205,7 +201,7 @@ export class SvgMask extends Component<Props, State> {
             fill={this.props.backdropColor}
             strokeWidth={0}
             fillRule='evenodd'
-            d={this.firstPath}
+            d={this.state.d}
             opacity={this.state.opacity as any}
           />
         </Svg>
